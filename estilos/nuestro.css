@@ -2,7 +2,6 @@
 body {
     background-color: black;
     color: black;
-    font-family: 'Barlow', sans-serif;
     text-align: center;
     margin: 20px;
     padding: 10px;
@@ -15,7 +14,7 @@ body > footer {
     background-color: rgb(131, 9, 9);
     max-width: 1000px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 30px;
 }
 
 /* Título principal */
@@ -28,7 +27,7 @@ h1 {
 /* Títulos secundarios */
 h2 {
     font-family: 'Milonga', cursive;
-    font-size: 30px;
+    font-size: 50px;
     color: rgb(131, 9, 9);
 }
 
@@ -40,7 +39,6 @@ section {
 
 /* Párrafos */
 p {
-    font-family: 'Barlow', sans-serif;
     font-size: 20px;
     line-height: 1.8;
     color: rgb(131, 9, 9);
@@ -49,7 +47,44 @@ p {
 /* Enlaces */
 a {
     color: black;
+    text-decoration: underline;
     font-size: 1.5em;
-      
+}
 
+/* Bloque de párrafos e imagen: Mobile First */
+#bloque {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Contenedor de los párrafos */
+#bloque > div {
+    width: 100%;
+}
+
+/* Imagen */
+#bloque img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Adaptación para pantallas grandes */
+@media (min-width: 768px) {
+    #bloque {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    #bloque > div {
+        flex: 2;
+    }
+
+    #bloque img {
+        flex: 1;
+        width: 100%;
+        max-width: 300px;
+    }
 }
