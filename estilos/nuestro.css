@@ -17,11 +17,22 @@ body > footer {
     padding: 30px;
 }
 
-/* Título principal */
+/* Título principal y menú de navegación */
 h1 {
     font-family: 'New Rocker', cursive;
     font-size: 5em;
     color: black;
+}
+
+
+.dropdown-menu {
+   background-color: black;
+}
+
+.dropdown-item {
+    color: white;
+    font-family: inherit;
+    font-size: 1rem;
 }
 
 /* Títulos secundarios */
@@ -41,7 +52,7 @@ section {
 p {
     font-size: 20px;
     line-height: 1.8;
-    color: rgb(131, 9, 9);
+    color: rgb(255, 255, 255);
 }
 
 /* Enlaces */
