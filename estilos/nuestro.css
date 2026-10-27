@@ -1,0 +1,55 @@
+/* Fondo general de la página */
+body {
+    background-color: black;
+    color: black;
+    font-family: 'Barlow', sans-serif;
+    text-align: center;
+    margin: 20px;
+    padding: 10px;
+}
+
+/* Bloque rojo con todo el contenido */
+body > header,
+body > main,
+body > footer {
+    background-color: rgb(131, 9, 9);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Título principal */
+h1 {
+    font-family: 'New Rocker', cursive;
+    font-size: 5em;
+    color: black;
+}
+
+/* Títulos secundarios */
+h2 {
+    font-family: 'Milonga', cursive;
+    font-size: 30px;
+    color: rgb(131, 9, 9);
+}
+
+/* Secciones */
+section {
+    background-color: rgb(10, 9, 9);
+    padding: 20px;
+}
+
+/* Párrafos */
+p {
+    font-family: 'Barlow', sans-serif;
+    font-size: 20px;
+    line-height: 1.8;
+    color: rgb(131, 9, 9);
+}
+
+/* Enlaces */
+a {
+    color: black;
+    font-size: 1.5em;
+      
+
+}
