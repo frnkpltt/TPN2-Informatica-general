@@ -20,7 +20,7 @@ body > footer {
 /* Título principal y menú de navegación */
 h1 {
     font-family: 'New Rocker', cursive;
-    font-size: 5em;
+    font-size: 2.2rem;
     color: black;
 }
 
@@ -38,7 +38,7 @@ h1 {
 /* Títulos secundarios */
 h2 {
     font-family: 'Milonga', cursive;
-    font-size: 50px;
+    font-size: 1.8rem;
     color: rgb(131, 9, 9);
 }
 
@@ -50,7 +50,7 @@ section {
 
 /* Párrafos */
 p {
-    font-size: 20px;
+    font-size: 80%;
     line-height: 1.8;
     color: rgb(255, 255, 255);
 }
@@ -79,6 +79,34 @@ a {
 #bloque img {
     max-width: 100%;
     height: auto;
+}
+
+
+/* Foro de fans */
+
+.btn {
+    background-color: black;
+    font-family: inherit;
+    color: white;
+    border-color: rgb(131, 9, 9) ;
+}
+
+.mb-3 {
+    font-family: inherit;
+    color: rgb(131, 9, 9);
+}
+
+.form-control {
+    font-family: inherit;
+   ;border-color: rgb(131, 9, 9) ;
+}
+
+.foto-mensaje {
+    display: block;
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    margin-top: 1rem;
 }
 
 /* Adaptación para pantallas grandes */
