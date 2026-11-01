@@ -109,6 +109,54 @@ a {
     margin-top: 1rem;
 }
 
+#listaMensajes .card {
+    font-family: inherit;
+    background-color: black;
+}
+
+
+/* Reproductor de música */
+
+@keyframes girar {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+.vinilo {
+    width: 80%;
+    max-width: 400px;
+    display: block;
+    margin: 0 auto;
+
+    animation: girar 4s linear infinite;
+    animation-play-state: paused;   /* arranca quieto */
+}
+
+.vinilo.girando {
+    animation-play-state: running;  /* con esta clase, gira */
+}
+
+.contenedor-vinilo {
+    position: relative;
+    width: 80%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.contenedor-vinilo .vinilo {
+    width: 100%;
+    display: block;
+}
+
+#botonInicio {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    border: none;
+}
+
 /* Adaptación para pantallas grandes */
 @media (min-width: 768px) {
     #bloque {
