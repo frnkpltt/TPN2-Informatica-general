@@ -1,24 +1,26 @@
-// rizoma.js — Etapa 1, paso 1: esfera de puntos
+// rizoma.js — Etapa 1, paso 3: recorrido, líneas y guardado
 
 const RADIO = 250;
 const CANT_ANONIMOS = 500;
-const CANT_FOTOS = 33; // después vendrá de archivo.json
-const RADIO_CLIC = 25;   // tolerancia en px (pensada para el dedo)
+const CANT_FOTOS = 33;    // después vendrá de archivo.json
+const RADIO_CLIC = 25;
+
+let anonimos = [];
+let fotos = [];
+let fotosPorId = {};      // NUEVO: diccionario id → foto
+let recorrido = [];       // NUEVO: ids en el orden en que se visitan
 
 let camara;
 let inicioX = 0;
 let inicioY = 0;
-let seleccionada = null;
 
-let anonimos = [];
-let fotos = [];
+let c1, c2, c3 = 255;
 
 function setup() {
   const contenedor = document.querySelector('#rizoma');
   const lienzo = createCanvas(contenedor.clientWidth, contenedor.clientHeight, WEBGL);
   lienzo.parent(contenedor);
-
-    camara = createCamera();
+  camara = createCamera();
 
   // Semilla propia de cada visitante
   let semilla = localStorage.getItem('rizoma-semilla');
@@ -28,15 +30,22 @@ function setup() {
   }
   randomSeed(Number(semilla));
 
-  // La multitud
+  // NUEVO: primero los recuerdos, para que cambiar la multitud no los mueva
+  for (let i = 0; i < CANT_FOTOS; i++) {
+    const foto = { id: 'p' + i, pos: puntoEnEsfera(RADIO) };
+    fotos.push(foto);
+    fotosPorId[foto.id] = foto;
+  }
+
+  // Después la multitud
   for (let i = 0; i < CANT_ANONIMOS; i++) {
     anonimos.push(puntoEnEsfera(RADIO));
   }
 
-  // Los recuerdos
-  for (let i = 0; i < CANT_FOTOS; i++) {
-    fotos.push({ id: 'p' + i, pos: puntoEnEsfera(RADIO) });
-  }
+  cargarRecorrido();  // NUEVO
+
+  // NUEVO
+  document.querySelector('#reiniciar').addEventListener('click', reiniciarRecorrido);
 }
 
 function puntoEnEsfera(radio) {
@@ -49,11 +58,20 @@ function puntoEnEsfera(radio) {
 function draw() {
   background(0);
   orbitControl();
+
   // Dónde cae cada recuerdo en la pantalla, con la cámara de este cuadro
   for (let i = 0; i < fotos.length; i++) {
     fotos[i].pantalla = worldToScreen(fotos[i].pos);
   }
-  // Multitud: puntos chicos y tenues
+
+  dibujarMultitud();
+  dibujarRecorrido();   // NUEVO
+  dibujarRecuerdos();
+}
+
+// ---------- Dibujo ----------
+
+function dibujarMultitud() {
   stroke(255, 120);
   strokeWeight(2);
   beginShape(POINTS);
@@ -61,29 +79,47 @@ function draw() {
     vertex(anonimos[i].x, anonimos[i].y, anonimos[i].z);
   }
   endShape();
+}
 
-  // Recuerdos: puntos grandes en rojo
-  stroke(220, 0, 0);
-  strokeWeight(8);
-  beginShape(POINTS);
+// NUEVO: el Line Loop del recorrido
+function dibujarRecorrido() {
+  if (recorrido.length < 2) return;
+
+  noFill();
+  stroke(c1, c2, c3);
+  strokeWeight(1.5);
+  beginShape();
+  for (let i = 0; i < recorrido.length; i++) {
+    const f = fotosPorId[recorrido[i]];
+    if (f !== undefined) {
+      vertex(f.pos.x, f.pos.y, f.pos.z);
+    }
+  }
+  endShape(CLOSE);
+}
+
+// NUEVO: tres estados (sin visitar, visitada, actual)
+function dibujarRecuerdos() {
+  const actual = recorrido[recorrido.length - 1];  // undefined si está vacío
+
   for (let i = 0; i < fotos.length; i++) {
-    vertex(fotos[i].pos.x, fotos[i].pos.y, fotos[i].pos.z);
-  }
-  endShape();
-  // Recuerdo seleccionado
-  if (seleccionada !== null) {
-    stroke(255);
-    strokeWeight(14);
-    beginShape(POINTS);
-    vertex(seleccionada.pos.x, seleccionada.pos.y, seleccionada.pos.z);
-    endShape();
+    const f = fotos[i];
+
+    if (f.id === actual) {
+      stroke(255);
+      strokeWeight(14);
+    } else if (recorrido.includes(f.id)) {
+      stroke(255);
+      strokeWeight(8);
+    } else {
+      stroke(220, 0, 0);
+      strokeWeight(8);
+    }
+    point(f.pos.x, f.pos.y, f.pos.z);
   }
 }
 
-function windowResized() {
-  const contenedor = document.querySelector('#rizoma');
-  resizeCanvas(contenedor.clientWidth, contenedor.clientHeight);
-}
+// ---------- Clic ----------
 
 function mousePressed() {
   inicioX = mouseX;
@@ -91,16 +127,12 @@ function mousePressed() {
 }
 
 function mouseReleased() {
-  // ¿Fue un arrastre? Entonces no es clic
   if (dist(mouseX, mouseY, inicioX, inicioY) > 5) return;
-
-  // ¿Fue fuera del canvas?
   if (mouseX < 0 || mouseX > width || mouseY < 0 || mouseY > height) return;
 
   const foto = buscarFotoCercana(mouseX, mouseY);
   if (foto !== null) {
-    seleccionada = foto;
-    console.log('Clic en', foto.id);
+    agregarAlRecorrido(foto);   // NUEVO (antes: seleccionada = foto)
   }
 }
 
@@ -113,7 +145,6 @@ function buscarFotoCercana(x, y) {
     const distPantalla = dist(x, y, f.pantalla.x, f.pantalla.y);
 
     if (distPantalla < RADIO_CLIC) {
-      // Entre las candidatas, la más cercana a la cámara (la de adelante)
       const distCamara = dist(camara.eyeX, camara.eyeY, camara.eyeZ,
                               f.pos.x, f.pos.y, f.pos.z);
       if (distCamara < menorDistCamara) {
@@ -123,4 +154,46 @@ function buscarFotoCercana(x, y) {
     }
   }
   return elegida;
+}
+
+// ---------- Recorrido (NUEVO) ----------
+
+function agregarAlRecorrido(foto) {
+  const ultimo = recorrido[recorrido.length - 1];
+  if (foto.id === ultimo) return;   // la misma dos veces seguidas: nada
+
+  recorrido.push(foto.id);
+  guardarRecorrido();
+  console.log('Recorrido:', recorrido);
+}
+
+function guardarRecorrido() {
+  localStorage.setItem('rizoma-recorrido', JSON.stringify(recorrido));
+}
+
+function cargarRecorrido() {
+  const guardado = localStorage.getItem('rizoma-recorrido');
+  if (guardado !== null) {
+    recorrido = JSON.parse(guardado);
+  }
+}
+
+function reiniciarRecorrido() {
+  recorrido = [];
+  localStorage.removeItem('rizoma-recorrido');
+}
+
+// ---------- Ventana ----------
+
+function windowResized() {
+  const contenedor = document.querySelector('#rizoma');
+  resizeCanvas(contenedor.clientWidth, contenedor.clientHeight);
+}
+
+function keyPressed() {
+  if (key === 'r' || key === 'R') {
+    c1 = random(0, 255);
+    c2 = random(0, 255);
+    c3 = random(0, 255);
+  }
 }
