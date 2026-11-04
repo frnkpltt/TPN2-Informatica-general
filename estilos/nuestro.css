@@ -157,6 +157,38 @@ a {
     border: none;
 }
 
+/* Archivo visual (rizoma) */
+#rizoma {
+  height: 75vh;
+  padding: 0;
+}
+
+#rizoma canvas {
+  display: block;   /* sin esto queda un espacio fantasma debajo del canvas */
+}
+
+/* Archivo visual: ficha */
+.ficha {
+  text-align: left;               /* el body centra todo; un texto largo se lee mejor alineado a la izquierda */
+}
+
+.ficha .offcanvas-title {
+  color: white;                   /* el h2 global es bordó: sobre fondo oscuro casi no se ve */
+}
+
+.ficha p {
+  font-size: 1rem;                /* el 80% global es chico para leer una historia */
+}
+
+.ficha a {
+  color: #f0a5a5;                 /* el negro global sería invisible acá */
+  font-size: inherit;             /* y el 1.5em lo haría enorme */
+}
+
+.ficha figure img {
+  margin-bottom: 0.5rem;
+}
+
 /* Adaptación para pantallas grandes */
 @media (min-width: 768px) {
     #bloque {
@@ -176,4 +208,3 @@ a {
     }
 }
 
-#rizoma { height: 75vh; }

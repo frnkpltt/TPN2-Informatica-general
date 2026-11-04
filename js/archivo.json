@@ -1,0 +1,329 @@
+{
+  "piezas": [
+    {
+      "id": "p01",
+      "medio": "foto",
+      "src": "img/visual/1.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p02",
+      "medio": "foto",
+      "src": "img/visual/2.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p03",
+      "medio": "foto",
+      "src": "img/visual/3.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p04",
+      "medio": "foto",
+      "src": "img/visual/4.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p05",
+      "medio": "foto",
+      "src": "img/visual/5.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p06",
+      "medio": "foto",
+      "src": "img/visual/6.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p07",
+      "medio": "foto",
+      "src": "img/visual/7.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p08",
+      "medio": "foto",
+      "src": "img/visual/8.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p09",
+      "medio": "foto",
+      "src": "img/visual/9.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p10",
+      "medio": "foto",
+      "src": "img/visual/10.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p11",
+      "medio": "foto",
+      "src": "img/visual/11.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p12",
+      "medio": "foto",
+      "src": "img/visual/12.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p13",
+      "medio": "foto",
+      "src": "img/visual/13.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p14",
+      "medio": "foto",
+      "src": "img/visual/14.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p15",
+      "medio": "foto",
+      "src": "img/visual/15.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p16",
+      "medio": "foto",
+      "src": "img/visual/16.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p17",
+      "medio": "foto",
+      "src": "img/visual/17.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+  },
+  {
+      "id": "p18",
+      "medio": "foto",
+      "src": "img/visual/18.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p19",
+      "medio": "foto",
+      "src": "img/visual/19.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    }
+
+
+  ]
+}

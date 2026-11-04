@@ -2,7 +2,10 @@
 
 const RADIO = 250;
 const CANT_ANONIMOS = 500;
-const CANT_FOTOS = 33;    // después vendrá de archivo.json
+
+let ficha;
+let fichaAbierta = false;
+
 const RADIO_CLIC = 25;
 
 let anonimos = [];
@@ -16,11 +19,13 @@ let inicioY = 0;
 
 let c1, c2, c3 = 255;
 
-function setup() {
+async function setup() {
   const contenedor = document.querySelector('#rizoma');
   const lienzo = createCanvas(contenedor.clientWidth, contenedor.clientHeight, WEBGL);
   lienzo.parent(contenedor);
   camara = createCamera();
+
+  const piezas = await cargarArchivo();   // NUEVO
 
   // Semilla propia de cada visitante
   let semilla = localStorage.getItem('rizoma-semilla');
@@ -30,9 +35,13 @@ function setup() {
   }
   randomSeed(Number(semilla));
 
-  // NUEVO: primero los recuerdos, para que cambiar la multitud no los mueva
-  for (let i = 0; i < CANT_FOTOS; i++) {
-    const foto = { id: 'p' + i, pos: puntoEnEsfera(RADIO) };
+  // Primero los recuerdos (ahora desde el JSON)
+  for (let i = 0; i < piezas.length; i++) {
+    const foto = {
+      id: piezas[i].id,
+      datos: piezas[i],               // NUEVO: todo lo que necesita la ficha
+      pos: puntoEnEsfera(RADIO)
+    };
     fotos.push(foto);
     fotosPorId[foto.id] = foto;
   }
@@ -46,7 +55,23 @@ function setup() {
 
   // NUEVO
   document.querySelector('#reiniciar').addEventListener('click', reiniciarRecorrido);
+    prepararFicha();
 }
+
+async function cargarArchivo() {
+  try {
+    const respuesta = await fetch('js/archivo.json');
+    if (!respuesta.ok) {
+      throw new Error('Error HTTP ' + respuesta.status);
+    }
+    const datos = await respuesta.json();
+    return datos.piezas;
+  } catch (error) {
+    console.error('No se pudo cargar el archivo:', error);
+    return [];
+  }
+}
+
 
 function puntoEnEsfera(radio) {
   const v = createVector(randomGaussian(), randomGaussian(), randomGaussian());
@@ -57,8 +82,10 @@ function puntoEnEsfera(radio) {
 
 function draw() {
   background(0);
-  orbitControl();
 
+  if (!fichaAbierta) {
+    orbitControl();
+  }
   // Dónde cae cada recuerdo en la pantalla, con la cámara de este cuadro
   for (let i = 0; i < fotos.length; i++) {
     fotos[i].pantalla = worldToScreen(fotos[i].pos);
@@ -127,12 +154,15 @@ function mousePressed() {
 }
 
 function mouseReleased() {
+  if (fichaAbierta) return;   // NUEVO: con la ficha abierta, la esfera no escucha
+
   if (dist(mouseX, mouseY, inicioX, inicioY) > 5) return;
   if (mouseX < 0 || mouseX > width || mouseY < 0 || mouseY > height) return;
 
   const foto = buscarFotoCercana(mouseX, mouseY);
   if (foto !== null) {
-    agregarAlRecorrido(foto);   // NUEVO (antes: seleccionada = foto)
+    agregarAlRecorrido(foto);
+    mostrarFicha(foto);       // NUEVO
   }
 }
 
@@ -196,4 +226,73 @@ function keyPressed() {
     c2 = random(0, 255);
     c3 = random(0, 255);
   }
+}
+
+// ---------- Ficha ----------
+
+function prepararFicha() {
+  const elemento = document.querySelector('#ficha');
+  ficha = new bootstrap.Offcanvas(elemento);
+
+  // Empieza a abrirse: la esfera deja de escuchar
+  elemento.addEventListener('show.bs.offcanvas', function () {
+    fichaAbierta = true;
+  });
+
+  // Terminó de cerrarse: la esfera vuelve a escuchar y se corta el video
+  elemento.addEventListener('hidden.bs.offcanvas', function () {
+    fichaAbierta = false;
+    document.querySelector('#fichaMedio').replaceChildren();
+  });
+}
+
+function mostrarFicha(foto) {
+  const d = foto.datos;
+
+  document.querySelector('#fichaTitulo').innerText = d.titulo;
+  document.querySelector('#fichaDatos').innerText = textoFecha(d) + ' · ' + d.lugar;
+  document.querySelector('#fichaDescripcion').innerText = d.descripcion;
+
+  // Imagen o video
+  const medio = document.querySelector('#fichaMedio');
+  if (d.medio === 'video') {
+    const marco = document.createElement('div');
+    marco.classList.add('ratio', 'ratio-16x9');
+
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube-nocookie.com/embed/' + d.src;
+    iframe.title = d.alt;
+    iframe.allowFullscreen = true;
+
+    marco.append(iframe);
+    medio.replaceChildren(marco);
+  } else {
+    const img = document.createElement('img');
+    img.src = d.src;
+    img.alt = d.alt;
+    img.classList.add('img-fluid');
+    medio.replaceChildren(img);
+  }
+
+  // Fuente
+  const fuente = document.querySelector('#fichaFuente');
+  fuente.innerText = d.fuente.autor;
+  fuente.href = d.fuente.url;
+
+  // Copia archivada: solo si existe
+  const archivo = document.querySelector('#fichaArchivo');
+  if (d.fuente.archivo) {
+    archivo.href = d.fuente.archivo;
+    archivo.hidden = false;
+  } else {
+    archivo.hidden = true;
+  }
+
+  ficha.show();
+}
+
+function textoFecha(d) {
+  if (d.anio === null) return 's/f';
+  if (d.anioAprox) return 'c. ' + d.anio;
+  return String(d.anio);
 }
