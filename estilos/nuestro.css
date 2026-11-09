@@ -157,6 +157,36 @@ a {
     border: none;
 }
 
+#zonaCancion { 
+    background-color: black;
+    padding: 20px;
+}
+
+#zonaCancion a {
+    color: white;
+    text-decoration: underline;
+    font-size: 1em;
+}
+
+#zonaCancion a:hover {
+    color: rgb(131, 9, 9);
+    text-decoration: none;
+}
+
+#botonOtra {
+    font-family: inherit;
+    background-color: black;
+    color: white;
+    border-color: rgb(131, 9, 9);
+    
+}
+
+#botonOtra:hover {
+    background-color:  white;
+    color: black;
+    border-color: rgb(131, 9, 9);
+}
+
 /* Archivo visual (rizoma) */
 #rizoma {
   height: 75vh;
