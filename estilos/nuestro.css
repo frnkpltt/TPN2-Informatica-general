@@ -219,6 +219,9 @@ a {
   margin-bottom: 0.5rem;
 }
 
+.intro-archivo p { font-size: 1rem; }
+#comoFunciona { text-align: left; margin-top: 1rem; }
+
 /* Adaptación para pantallas grandes */
 @media (min-width: 768px) {
     #bloque {
