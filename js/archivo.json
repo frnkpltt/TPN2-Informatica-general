@@ -322,6 +322,74 @@
         "archivo": "https://web.archive.org/...",
         "consultado": "2026-11-01"
       }
+    },
+    {
+      "id": "p20",
+      "medio": "foto",
+      "src": "img/visual/20.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p21",
+      "medio": "foto",
+      "src": "img/visual/21.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p22",
+      "medio": "foto",
+      "src": "img/visual/22.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
+    },
+    {
+      "id": "p23",
+      "medio": "foto",
+      "src": "img/visual/23.jpg",
+      "alt": "Público con banderas frente al escenario, de noche",
+      "titulo": "Título breve de la pieza",
+      "anio": 1997,
+      "anioAprox": false,
+      "lugar": "Estadio, Ciudad",
+      "descripcion": "La historia de la imagen, en dos o tres oraciones.",
+      "fuente": {
+        "autor": "Nombre o usuario",
+        "url": "https://...",
+        "archivo": "https://web.archive.org/...",
+        "consultado": "2026-11-01"
+      }
     }
 
 
