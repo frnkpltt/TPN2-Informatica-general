@@ -117,60 +117,35 @@ a {
 
 /* Reproductor de música */
 
-@keyframes girar {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-}
-
-.vinilo {
-    width: 80%;
-    max-width: 400px;
-    display: block;
-    margin: 0 auto;
-
-    animation: girar 4s linear infinite;
-    animation-play-state: paused;   /* arranca quieto */
-}
-
-.vinilo.girando {
-    animation-play-state: running;  /* con esta clase, gira */
-}
-
-.contenedor-vinilo {
+.contenedor-tv {
     position: relative;
-    width: 80%;
-    max-width: 400px;
+    width: 90%;
+    max-width: 500px;
     margin: 0 auto;
 }
 
-.contenedor-vinilo .vinilo {
+.tv {
     width: 100%;
     display: block;
 }
 
+#pantallaTV {
+    position: absolute;
+    top: 14.5%;
+    left: 15%;
+    width: 68%;
+    height: 53%;
+    border: 0;
+    background: #000;
+    border-radius: 14px;
+}
+
 #botonInicio {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 41%;        /* top + height/2 */
+    left: 49%;       /* left + width/2 */
     transform: translate(-50%, -50%);
-    background: none;
-    border: none;
-}
-
-#zonaCancion { 
-    background-color: black;
-    padding: 20px;
-}
-
-#zonaCancion a {
-    color: white;
-    text-decoration: underline;
-    font-size: 1em;
-}
-
-#zonaCancion a:hover {
-    color: rgb(131, 9, 9);
-    text-decoration: none;
+    z-index: 2;
 }
 
 #botonOtra {

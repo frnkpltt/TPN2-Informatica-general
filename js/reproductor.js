@@ -1,16 +1,14 @@
 // ============================================
-// Reproductor aleatorio - reproductor.js
+// Reproductor aleatorio con televisión - reproductor.js
 // ============================================
 
 // ---------- 1. Capturar elementos del DOM ----------
 const botonInicio = document.querySelector('#botonInicio');
-const vinilo = document.querySelector('.vinilo');
+const pantallaTV = document.querySelector('#pantallaTV');
+const contenedorTV = document.querySelector('.contenedor-tv');
 const zonaCancion = document.querySelector('#zonaCancion');
-zonaCancion.id = 'zonaCancion';
-const contenedorVinilo = document.querySelector('.contenedor-vinilo');
 
-
-// Botón "Elegir otra canción": se crea una sola vez y se coloca debajo del vinilo
+// Botón "Elegir otra canción": se crea una sola vez y se coloca debajo de la tele
 // cuando el usuario inicia el reproductor (ver sección 6)
 const botonOtra = document.createElement('button');
 botonOtra.type = 'button';
@@ -21,19 +19,54 @@ botonOtra.classList.add('btn', 'btn-primary', 'd-block', 'mx-auto', 'my-3');
 // ---------- 2. Datos: array de objetos con las canciones ----------
 const canciones = [
     {
-        titulo: 'Mi genio amor',
-        album: 'Gulp!',
-        id: '6u4BM3xVhJs'
+        titulo: 'Me matan limón',
+        album: 'Luzbelito',
+        id: 'AfBn_agAI5k'
     },
     {
         titulo: 'El infierno está encantador esta noche',
         album: 'Gulp!',
-        id: 'E3LCrHVXwVk'
+        id: 'JsBWG18EGn4'
     },
     {
-        titulo: 'Me matan limón',
-        album: 'Luzbelito',
-        id: 'J09Zy4tFQr0'
+        titulo: 'Mi genio amor',
+        album: 'Gulp!',
+        id: '8GiO7XfnaGI'
+    },
+    {
+        titulo: 'Tarea fina',
+        album: 'La mosca y la sopa',
+        id: '1LwbDpc00jw'
+    },
+    {
+        titulo: 'La bestia pop',
+        album: 'Gulp!',
+        id: 'jyVCCrOAYeA'
+    },
+    {
+        titulo: 'Toxi taxi',
+        album: 'La mosca y la sopa',
+        id: 'dpV2swgNgmc'
+    },
+    {
+        titulo: 'Todo un palo',
+        album: 'Un bajón para el ojo idiota',
+        id: 't_wKM5hLQU8'
+    },
+    {
+        titulo: 'Motor Psico',
+        album: 'Oktubre',
+        id: 'x63QROiEAxc'
+    },
+    {
+        titulo: 'Salando las heridas',
+        album: 'La mosca y la sopa',
+        id: 'iII6w13F19w'
+    },
+    {
+        titulo: 'Mi perro dinamita',
+        album: 'La mosca y la sopa',
+        id: 'EWoIvbqPtTQ'
     }
 ];
 
@@ -54,24 +87,16 @@ function elegirIndice() {
 // ---------- 4. Mostrar la canción en la página ----------
 function mostrarCancion(cancion) {
     // Título
-    let titulo = document.createElement('h2');
+    let titulo = document.createElement('h3');
     titulo.innerText = cancion.titulo;
 
     // Álbum
     let album = document.createElement('p');
     album.innerText = 'Álbum: ' + cancion.album;
 
-    // Reproductor de YouTube (el contenedor "ratio" de Bootstrap lo hace responsive)
-    let contenedorVideo = document.createElement('div');
-    contenedorVideo.classList.add('ratio', 'ratio-16x9');
-
-    let reproductor = document.createElement('iframe');
-    reproductor.src = 'https://www.youtube.com/embed/' + cancion.id + '?autoplay=1';
-    reproductor.title = cancion.titulo;
-    reproductor.allow = 'autoplay; encrypted-media';
-    reproductor.allowFullscreen = true;
-
-    contenedorVideo.append(reproductor);
+    // El video se "transmite" en la pantalla de la tele (el iframe ya está en el HTML)
+    pantallaTV.src = 'https://www.youtube.com/embed/' + cancion.id + '?autoplay=1';
+    pantallaTV.title = cancion.titulo;
 
     // Plan B: enlace directo a YouTube
     let enlace = document.createElement('a');
@@ -81,7 +106,7 @@ function mostrarCancion(cancion) {
     enlace.classList.add('d-block', 'my-3');
 
     // Reemplazo todo lo anterior por lo nuevo
-    zonaCancion.replaceChildren(titulo, album, contenedorVideo, enlace);
+    zonaCancion.replaceChildren(titulo, album, enlace);
 }
 
 // ---------- 5. Elegir + mostrar ----------
@@ -97,14 +122,11 @@ botonOtra.addEventListener('click', elegirYMostrar);
 
 // Botón de inicio
 botonInicio.addEventListener('click', function () {
-    // El vinilo empieza a girar y nunca se detiene (no se saca la clase)
-    vinilo.classList.add('girando');
-
     // Elijo la primera canción
     elegirYMostrar();
 
-    // Coloco el botón "Elegir otra canción" justo debajo del vinilo
-    contenedorVinilo.after(botonOtra);
+    // Coloco el botón "Elegir otra canción" justo debajo de la tele
+    contenedorTV.after(botonOtra);
 
     // Oculto el botón de inicio: de ahora en más se usa "Elegir otra canción"
     botonInicio.style.display = 'none';
