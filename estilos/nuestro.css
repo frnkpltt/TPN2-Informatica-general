@@ -216,3 +216,46 @@ a {
     }
 }
 
+/* Línea de tiempo */
+
+.hoja {
+    background-color: #f4ecc8;           /* amarillo papel */
+    color: #2b2b2b;                      /* texto oscuro, para que se lea */
+    font-family: 'Courier New', Courier, monospace;   /* tipografía de máquina de escribir */
+
+    width: 100%;
+    max-width: 700px;
+    min-height: 500px;
+    margin: 0 auto;
+    padding: 40px 50px;
+
+    border-radius: 3px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);   /* sombra: la hoja "flota" sobre el fondo */
+}
+
+.hoja h3 {
+    color: #1a1a1a;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+.hoja p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+@media (max-width: 576px) {
+    .hoja {
+        padding: 25px 20px;
+    }
+}
+
+.hito {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed #b8ad80;
+}
+
+#lineaTiempo p {
+    color: #2b2b2b;
+}
