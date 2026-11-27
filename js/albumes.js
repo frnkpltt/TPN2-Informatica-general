@@ -116,7 +116,8 @@ const albumes = [
 /* ---------- Referencias al DOM ---------- */
 
 const listaAlbumes = document.querySelector("#lista-albumes");
-const detalleAlbum = document.querySelector("#detalle-album");
+const modalAlbum = new bootstrap.Modal(document.querySelector("#modalAlbum"));
+const contenidoModalAlbum = document.querySelector("#contenidoModalAlbum");
 
 const filtroTodos = document.querySelector("#filtro-todos");
 const filtroRedondos = document.querySelector("#filtro-redondos");
@@ -180,19 +181,20 @@ function mostrarAlbumes(filtro) {
 function mostrarDetalle(posicion) {
   const album = albumes[posicion];
 
-  detalleAlbum.innerHTML = `
+  contenidoModalAlbum.innerHTML = `
     <div class="row g-3 align-items-center">
       <div class="col-12 col-md-4">
         <img src="${album.imagen}" class="img-fluid rounded" alt="Tapa de ${album.titulo}">
       </div>
       <div class="col-12 col-md-8">
-        <h2 class="h4">${album.titulo} <span class="text-secondary">(${album.anio})</span></h2>
-        <p class="mb-2">${nombreBanda(album.banda)}</p>
-        <p class="mb-0">${album.descripcion}</p>
+        <h3>${album.titulo} (${album.anio})</h3>
+        <p>${nombreBanda(album.banda)}</p>
+        <p>${album.descripcion}</p>
       </div>
     </div>
   `;
-  detalleAlbum.hidden = false;
+
+  modalAlbum.show();
 }
 
 /* ---------- Marca cuál filtro está activo ---------- */
@@ -208,19 +210,16 @@ function marcarFiltro(botonElegido) {
 
 filtroTodos.addEventListener("click", function () {
   marcarFiltro(filtroTodos);
-  detalleAlbum.hidden = true;
   mostrarAlbumes("todos");
 });
 
 filtroRedondos.addEventListener("click", function () {
   marcarFiltro(filtroRedondos);
-  detalleAlbum.hidden = true;
   mostrarAlbumes("redondos");
 });
 
 filtroFundamentalistas.addEventListener("click", function () {
   marcarFiltro(filtroFundamentalistas);
-  detalleAlbum.hidden = true;
   mostrarAlbumes("fundamentalistas");
 });
 

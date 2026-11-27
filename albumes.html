@@ -100,8 +100,22 @@
             <!-- Galería: la completa js/albumes.js -->
             <div id="lista-albumes" class="row g-3"></div>
 
-            <!-- Detalle del álbum elegido (oculto hasta que se toca una tapa) -->
-            <div id="detalle-album" class="mt-4 p-3 bg-dark text-white rounded" aria-live="polite" hidden></div>
+           <!-- Ventana emergente con la información del álbum -->
+         <div class="modal fade" id="modalAlbum" tabindex="-1" aria-labelledby="tituloModalAlbum" aria-hidden="true">
+         <div class="modal-dialog modal-lg modal-dialog-centered">
+         <div class="modal-content">
+
+            <div class="modal-header">
+                <h2 class="modal-title" id="tituloModalAlbum"></h2>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+
+            <div class="modal-body" id="contenidoModalAlbum">
+            </div>
+
+        </div>
+    </div>
+</div>
         </section>
     </main>
 
