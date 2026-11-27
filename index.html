@@ -1,102 +1,117 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Ladrón de mi cerebro</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Milonga&family=New+Rocker&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="estilos/nuestro.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Barlow:wght@400;500;600;700;800&family=Milonga&family=New+Rocker&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="estilos/nuestro.css">
 </head>
+
 <body>
 
-    <header>
-       <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
+<header>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
 
-        <!-- Nombre del sitio -->
-       
-        
-        <h1>Ladrón de mi cerebro</h1>
-      
-      
+            <h1>Ladrón de mi cerebro</h1>
 
-        <!-- Botón para pantallas pequeñas -->
-        <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#menuPrincipal"
-            aria-controls="menuPrincipal"
-            aria-expanded="false"
-            aria-label="Abrir menú">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal"
+                aria-expanded="false"
+                aria-label="Abrir menú">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <!-- Menú de navegación -->
-        <div class="collapse navbar-collapse" id="menuPrincipal">
-            <ul class="navbar-nav ms-auto">
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <ul class="navbar-nav ms-auto">
 
-                <!-- INICIO -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#"
-                        role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                    <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle active" href="#"
+                       role="button" data-bs-toggle="dropdown" aria-current="page">
                         INICIO
-                    </a>
+                        </a>
+                        <ul class="dropdown-menu">
+                        <a class="dropdown-item active" href="index.html" aria-current="page">INICIO</a>                            <li><a class="dropdown-item" href="contacto.html">FORO</a></li>
+                            <li><a class="dropdown-item" href="creditos.html">CRÉDITOS</a></li>
+                        </ul>
+                    </li>
 
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="index.html">INICIO</a></li>
-                        <li><a class="dropdown-item" href="contacto.html">FORO</a></li>
-                        <li><a class="dropdown-item" href="creditos.html">CRÉDITOS</a></li>
-                    </ul>
-                </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#"
+                            role="button" data-bs-toggle="dropdown">
+                            HISTORIA
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="linea-de-tiempo.html">LÍNEA DE TIEMPO</a></li>
+                            <li><a class="dropdown-item" href="ensayo.html">ENSAYO</a></li>
+                            <li><a class="dropdown-item" href="fallecimiento.html">FALLECIMIENTO</a></li>
+                        </ul>
+                    </li>
 
-                <!-- HISTORIA -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#"
-                        role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        HISTORIA
-                    </a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#"
+                            role="button" data-bs-toggle="dropdown">
+                            VISUAL
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="albumes.html">ÁLBUMES</a></li>
+                            <li><a class="dropdown-item" href="historia-visual.html">VISUAL</a></li>
+                            <li><a class="dropdown-item" href="reproductor.html">REPRODUCTOR</a></li>
+                        </ul>
+                    </li>
 
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="linea-de-tiempo.html">LÍNEA DE TIEMPO</a></li>
-                        <li><a class="dropdown-item" href="ensayo.html">ENSAYO</a></li>
-                        <li><a class="dropdown-item" href="fallecimiento.html">FALLECIMIENTO</a></li>
-                    </ul>
-                </li>
-
-                <!-- VISUAL -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#"
-                        role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        VISUAL
-                    </a>
-
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="albumes.html">ÁLBUMES</a></li>
-                        <li><a class="dropdown-item" href="historia-visual.html">VISUAL</a></li>
-                        <li><a class="dropdown-item" href="reproductor.html">REPRODUCTOR</a></li>
-                    </ul>
-                </li>
-
-            </ul>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</header>
 
-    </header>
+<main id="inicio">
 
-   
-<main>
+    <!-- PORTADA PRINCIPAL -->
+    <section id="portadaInicio">
 
-    <!-- Presentación -->
-    <section>
-        <h2>Carlos Alberto Solari</h2>
+        <div class="texto-portada">
 
-        <div id="bloque">
+            <h2>Carlos Alberto Solari</h2>
+
+
+            <p>
+                Una mirada sobre su música, su historia y el fenómeno
+                cultural que se construyó alrededor de su figura.
+            </p>
+
+        </div>
+
+        <div class="imagen-portada">
+            <!-- Reemplazar por una fotografía del Indio -->
+            <img src="img/indio-portada.jpeg" alt="Indio Solari">
+        </div>
+
+    </section>
+
+
+    <!-- PRESENTACIÓN -->
+    <section id="presentacionInicio">
+
+        <div class="titulo-seccion">
+            <h2>EL ARTISTA DETRÁS DEL MITO</h2>
+        </div>
+
+        <div class="contenido-presentacion">
+
             <div>
                 <p>
                     Más conocido como el Indio Solari, Carlos Alberto Solari
@@ -107,7 +122,7 @@
                 </p>
 
                 <p>
-                    A través de sus canciones, construyó un universo propio,
+                    A través de sus canciones construyó un universo propio,
                     caracterizado por letras cargadas de metáforas, imágenes
                     y referencias que invitan a distintas interpretaciones.
                     Su música se convirtió en parte de la vida de miles de
@@ -115,75 +130,100 @@
                 </p>
             </div>
 
-            <img src="img/guitarra.jpeg" alt="Indio Solari tocando la guitarra">
+
         </div>
     </section>
 
-    <!-- Recorrido musical -->
-    <section>
-        <h2>Un recorrido por su música</h2>
 
-        <p>
-            Su historia está estrechamente ligada a Patricio Rey y sus
-            Redonditos de Ricota, banda que integró junto a Skay Beilinson
-            y que se convirtió en uno de los proyectos más influyentes
-            del rock nacional. Con una propuesta independiente y una
-            identidad artística particular, los Redondos construyeron
-            una relación muy fuerte con su público.
-        </p>
+   <!-- RECORRIDO Y CULTURA RICOTERA -->
+<div id="bloquesInicio">
 
-        <p>
-            Luego de la separación de la banda, en 2001, Solari comenzó
-            una nueva etapa musical junto a Los Fundamentalistas del
-            Aire Acondicionado. Este proyecto le permitió continuar
-            desarrollando su obra y presentarse ante nuevas generaciones
-            de seguidores.
-        </p>
+    <!-- RECORRIDO MUSICAL -->
+    <section id="recorridoInicio">
+        <div class="titulo-seccion">
+            <p>DE LOS REDONDOS A LOS FUNDAMENTALISTAS</p>
+            <h2>Un recorrido por su música</h2>
+        </div>
+
+        <p>Su historia está estrechamente ligada a Patricio Rey y sus Redonditos de Ricota, banda que integró junto a Skay Beilinson y que se convirtió en uno de los proyectos más influyentes del rock nacional.</p>
+
+        <p>Luego de la separación de la banda, Solari comenzó una nueva etapa musical junto a Los Fundamentalistas del Aire Acondicionado. Este proyecto le permitió continuar desarrollando su obra y presentarse ante nuevas generaciones de seguidores.</p>
     </section>
 
-    <!-- Cultura ricotera -->
-    <section>
-        <h2>La cultura ricotera</h2>
+    <!-- CULTURA RICOTERA -->
+    <section id="universoSolari">
+        <div class="titulo-seccion">
+            <p>MÁS ALLÁ DE LAS CANCIONES</p>
+            <h2>La cultura ricotera</h2>
+        </div>
 
-        <p>
-            Alrededor de su música se formó una comunidad que encontró
-            en las canciones, los recitales y sus símbolos una forma
-            de identificación colectiva. Ser parte de ese público
-            implica mucho más que escuchar una banda: también significa
-            compartir experiencias, recuerdos y códigos propios.
-        </p>
+        <p>Alrededor de su música se formó una comunidad que encontró en las canciones, los recitales y sus símbolos una forma de identificación colectiva. Ser parte de ese público implica mucho más que escuchar una banda: también significa compartir experiencias, recuerdos y códigos propios.</p>
 
-        <p>
-            Los recitales se convirtieron en encuentros multitudinarios
-            y en acontecimientos que forman parte de la historia del
-            rock argentino. Esa conexión entre el artista y su público
-            es una de las características que hacen que el fenómeno
-            ricotero siga vigente.
-        </p>
+        <p>Los recitales se convirtieron en encuentros multitudinarios y en acontecimientos que forman parte de la historia del rock argentino. Esa conexión entre el artista y su público es una de las características que hacen que el fenómeno ricotero siga vigente.</p>
     </section>
 
-    <!-- Accesos a otras páginas -->
-    <section>
-        <h2>Explorá su universo</h2>
+</div>
 
-        <p>
-            Conocé más sobre su historia, su música y el impacto que
-            dejó en la cultura argentina.
-        </p>
+    <!-- ACCESOS A OTRAS PÁGINAS -->
+    <section id="explorarInicio">
 
-        <a href="linea-de-tiempo.html">Línea de tiempo</a>
-        <a href="albumes.html">Álbumes</a>
-        <a href="historia-visual.html">Archivo visual</a>
-        <a href="ensayo.html">Leer el ensayo</a>
+        <div class="titulo-seccion">
+    
+            <h2>Explorá el sitio</h2>
+        </div>
+
+        <div class="row g-4 tarjetas-inicio">
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <a href="linea-de-tiempo.html" class="tarjeta-inicio">
+                    <img src="img/acceso-historia.jpeg" alt="Historia del Indio Solari">
+                    <div>
+                        <h3>HISTORIA</h3>
+                        <p>Un recorrido por los momentos más importantes de su trayectoria.</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <a href="albumes.html" class="tarjeta-inicio">
+                    <img src="img/acceso-albumes.jpeg" alt="Álbumes musicales">
+                    <div>
+                        <h3>ÁLBUMES</h3>
+                        <p>Conocé los discos que forman parte de su obra musical.</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <a href="historia-visual.html" class="tarjeta-inicio">
+                    <img src="img/acceso-visual.jpeg" alt="Archivo visual">
+                    <div>
+                        <h3>ARCHIVO VISUAL</h3>
+                        <p>Imágenes, registros y materiales de su universo artístico.</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <a href="ensayo.html" class="tarjeta-inicio">
+                    <img src="img/acceso-ensayo.jpeg" alt="Ensayo sobre el Indio Solari">
+                    <div>
+                        <h3>ENSAYO</h3>
+                        <p>Una reflexión sobre su impacto musical y cultural.</p>
+                    </div>
+                </a>
+            </div>
+
+        </div>
     </section>
 
 </main>
 
+<footer>
+    <p>LADRÓN DE MI CEREBRO </p>
+</footer>
 
-    <footer>
-    
-        
-    </footer>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

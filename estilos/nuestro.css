@@ -298,3 +298,95 @@ a {
     width: 100%;
     height: auto;
 }
+
+/* Inicio: recorrido musical y cultura ricotera */
+
+/* Mobile first */
+#bloquesInicio {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Adaptación para pantallas grandes */
+@media (min-width: 768px) {
+    #bloquesInicio {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 20px;
+    }
+
+    #bloquesInicio section {
+        flex: 1;
+        width: 50%;
+    }
+}
+/* Tarjetas de acceso de la página de inicio */
+
+.tarjetas-inicio {
+    align-items: stretch;
+}
+
+.tarjeta-inicio {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.tarjeta-inicio img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.tarjeta-inicio h3 {
+    color: rgb(131, 9, 9);
+    font-family: 'Milonga', cursive;
+    font-size: 1.3rem;
+    margin-top: 10px;
+}
+
+.tarjeta-inicio p {
+    font-size: 1rem;
+}
+/* Bordes y efectos de las tarjetas de inicio */
+
+.tarjeta-inicio {
+    border: 2px solid rgb(131, 9, 9);
+    border-radius: 8px;
+    padding: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* Imágenes ligeramente redondeadas */
+.tarjeta-inicio img {
+    border-radius: 6px;
+}
+
+/* Efecto al pasar el mouse */
+.tarjeta-inicio:hover {
+    transform: scale(1.04);
+    z-index: 2;
+}
+/* Cambio de color al hacer click */
+.tarjeta-inicio:active {
+    background-color: rgb(131, 9, 9);
+    border-color: white;
+}
+
+.tarjeta-inicio:active h3,
+.tarjeta-inicio:active p {
+    color: white;
+}
+/* Página activa en el menú */
+.navbar .nav-link.active {
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+.navbar .dropdown-item.active {
+    background-color: rgb(131, 9, 9);
+    color: white;
+}
