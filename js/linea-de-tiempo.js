@@ -1,3 +1,13 @@
+// ============================================
+// Línea de tiempo - linea-de-tiempo.js
+// Requiere Typewriter.js (CDN) cargado antes en el HTML
+//
+// Los comentarios marcados con [FUERA DE CLASE] explican
+// elementos que no se vieron en la cursada y salen de la
+// documentación de la librería o de JavaScript.
+// Typewriter: safi.me.uk/typewriterjs
+// ============================================
+
 const hitos = [
     {
         anio: '1949',
@@ -105,9 +115,71 @@ const hitos = [
 
 const lineaTiempo = document.querySelector('#lineaTiempo');
 
+// ============================================
+// Pausa del recorrido automático
+// ============================================
+
+// false = el recorrido avanza (se escribe el texto y la página baja sola)
+// true = todo está frenado y el usuario puede moverse libremente
+let enPausa = false;
+
+// true cuando ya se escribieron todos los hitos
+let terminado = false;
+
+// Guarda la máquina de escribir del hito que se está escribiendo ahora,
+// para poder frenarla o arrancarla desde el clic
+let maquinaActual = null;
+
+// Aviso fijo en la pantalla para que el usuario sepa que puede pausar
+let aviso = document.createElement('p');
+aviso.id = 'avisoRecorrido';
+aviso.innerText = 'Click=pausa';
+document.body.append(aviso);
+
+document.addEventListener('click', function (evento) {
+    // Si ya terminó el recorrido, no hay nada que pausar
+    if (terminado) {
+        return;
+    }
+
+    // [FUERA DE CLASE] evento.target es el elemento exacto donde se hizo clic.
+    // .closest('header') busca si ese elemento está dentro del <header>
+    // (o es el header mismo). Si lo está, devuelve el header; si no, devuelve null.
+    // Así los clics en el menú no pausan ni retoman el recorrido.
+    if (evento.target.closest('header')) {
+        return;
+    }
+
+    // Invierte el valor: si era false pasa a true, y al revés
+    enPausa = !enPausa;
+
+    if (enPausa) {
+        // [FUERA DE CLASE] stop() frena la máquina de escribir justo donde está.
+        // No se escriben letras nuevas, así que la página tampoco baja.
+        maquinaActual.stop();
+    } else {
+        // [FUERA DE CLASE] start() la vuelve a arrancar desde donde quedó
+        maquinaActual.start();
+    }
+
+    // Cambia el texto del aviso según el estado (operador ternario)
+    aviso.innerText = enPausa
+        ? 'Click=reanudar'
+        : 'Click=pausa';
+
+    // Le pone o le saca la clase "pausado" para cambiarle el color en el CSS
+    aviso.classList.toggle('pausado');
+});
+
+// ============================================
+// Escritura de los hitos
+// ============================================
+
 function escribirHito(i) {
-    // Corte: si ya no quedan hitos, termina
+    // Corte: si ya no quedan hitos, termina y saca el aviso de la pantalla
     if (i >= hitos.length) {
+        terminado = true;
+        aviso.remove();
         return;
     }
 
@@ -118,33 +190,50 @@ function escribirHito(i) {
     tarjeta.classList.add('hito');
     lineaTiempo.append(tarjeta);
 
-    // La máquina de escribir escribe adentro de la tarjeta
+    // [FUERA DE CLASE] new Typewriter(elemento, opciones) crea la máquina de escribir
+    // de la librería Typewriter.js, que va a escribir adentro de "tarjeta".
     let maquina = new Typewriter(tarjeta, {
+        // [FUERA DE CLASE] delay: milisegundos de espera entre cada letra (más alto = más lento)
         delay: 40,
-        cursor: '', // Sin cursor parpadeante (las comillas vacías lo ocultan)
+        // [FUERA DE CLASE] cursor: el carácter del cursor; con comillas vacías se oculta
+        cursor: '',
 
-        // Esta función se ejecuta cada vez que la máquina escribe una letra
-        // "letra" es el carácter que está por escribir y "nodo" es ese carácter
-        // ya preparado para mostrarse en la página
+        // [FUERA DE CLASE] onCreateTextNode: función que la librería ejecuta cada vez
+        // que escribe una letra. "letra" es el carácter que está por escribir y
+        // "nodo" es ese carácter ya preparado para mostrarse en la página.
+        // Como en pausa no se escriben letras, esta función tampoco se ejecuta
+        // y la página no baja.
         onCreateTextNode: function (letra, nodo) {
-            // Baja la página hasta que se vea el borde inferior de la tarjeta,
-            // así siempre queda a la vista lo último que se escribió
+            // [FUERA DE CLASE] scrollIntoView mueve la página hasta que el elemento
+            // quede a la vista. { block: 'end' } hace que se vea su borde inferior,
+            // así siempre queda a la vista lo último que se escribió.
             tarjeta.scrollIntoView({ block: 'end' });
+
             // Le devuelvo la letra a la librería para que la muestre.
             // Sin esta línea el texto no aparece en la página
-
             return nodo;
         }
     });
 
+    // La guardo como la máquina actual para que el clic pueda frenarla
+    maquinaActual = maquina;
+
     maquina
+        // [FUERA DE CLASE] pasteString pega el contenido de una sola vez, sin efecto
+        // de escritura. Se usa para la imagen, que no tiene letras para escribir.
         .pasteString('<img src="' + hito.imagen + '" alt="' + hito.titulo + '" class="img-hito">')
+        // [FUERA DE CLASE] typeString escribe el texto letra por letra.
+        // Acepta etiquetas HTML (h3, p), que la librería arma como elementos reales.
         .typeString('<h3>' + hito.anio + ' · ' + hito.titulo + '</h3>')
         .typeString('<p>' + hito.descripcion + '</p>')
+        // [FUERA DE CLASE] pauseFor espera la cantidad de milisegundos indicada
         .pauseFor(800)
+        // [FUERA DE CLASE] callFunction ejecuta una función en ese punto de la cadena,
+        // es decir, cuando terminó de escribir y de esperar
         .callFunction(function () {
-            escribirHito(i + 1);   // pasa al siguiente
+            escribirHito(i + 1);   // pasa al siguiente hito
         })
+        // [FUERA DE CLASE] start arranca la máquina. Sin esta línea no pasa nada.
         .start();
 }
 

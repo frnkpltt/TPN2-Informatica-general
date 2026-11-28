@@ -268,6 +268,27 @@ a {
     margin: 0 auto 1rem;
 }
 
+/* Aviso fijo para pausar o retomar el recorrido de la línea de tiempo */
+#avisoRecorrido {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1e1e1e;
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin: 0;
+    z-index: 10;
+}
+
+#avisoRecorrido.pausado {
+    background-color: #c0392b;
+}
+
+
+
 /* Ventana emergente de los álbumes */
 #modalAlbum .modal-content {
     background-color: black;
@@ -389,4 +410,44 @@ a {
 .navbar .dropdown-item.active {
     background-color: rgb(131, 9, 9);
     color: white;
+}
+
+/* Footer */
+
+
+/* Se usa #piePagina para ganarle a Bootstrap y a las reglas generales del sitio */
+#piePagina {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border-top: 3px solid rgb(131, 9, 9);
+    text-align: left;
+}
+
+#piePagina .texto-pie {
+    color: #b3b3b3;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    max-width: 300px;
+}
+
+/* Títulos de cada lista: Inicio, Historia, Visual */
+#piePagina h3 {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;   /* en mayúsculas, como en el menú */
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+    border-bottom: 2px solid rgb(131, 9, 9);
+    display: inline-block;
+}
+
+#piePagina a {
+    color: #ffffff;
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+
+#piePagina a:hover {
+    color: #c0392b;
 }
