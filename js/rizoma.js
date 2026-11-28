@@ -19,6 +19,9 @@ let inicioY = 0;
 
 let c1, c2, c3 = 255;
 
+let vista = 'esfera';    // 'esfera' o 'lista'
+let tarjetas = {};       // id → botón de la lista
+
 async function setup() {
   const contenedor = document.querySelector('#rizoma');
   const lienzo = createCanvas(contenedor.clientWidth, contenedor.clientHeight, WEBGL);
@@ -56,7 +59,15 @@ async function setup() {
   // NUEVO
   document.querySelector('#reiniciar').addEventListener('click', reiniciarRecorrido);
     prepararFicha();
-}
+
+} construirLista();
+  actualizarLista();
+  document.querySelector('#cambiarVista').addEventListener('click', cambiarVista);
+
+  if (localStorage.getItem('rizoma-vista') === 'lista') {
+    cambiarVista();
+  }
+
 
 async function cargarArchivo() {
   try {
@@ -154,15 +165,15 @@ function mousePressed() {
 }
 
 function mouseReleased() {
-  if (fichaAbierta) return;   // NUEVO: con la ficha abierta, la esfera no escucha
+    if (vista === 'lista') return;
+   if (fichaAbierta) return;   // NUEVO: con la ficha abierta, la esfera no escucha
 
-  if (dist(mouseX, mouseY, inicioX, inicioY) > 5) return;
-  if (mouseX < 0 || mouseX > width || mouseY < 0 || mouseY > height) return;
+    if (dist(mouseX, mouseY, inicioX, inicioY) > 5) return;
+    if (mouseX < 0 || mouseX > width || mouseY < 0 || mouseY > height) return;
 
-  const foto = buscarFotoCercana(mouseX, mouseY);
-  if (foto !== null) {
-    agregarAlRecorrido(foto);
-    mostrarFicha(foto);       // NUEVO
+    const foto = buscarFotoCercana(mouseX, mouseY);
+    if (foto !== null) {
+      abrirPieza(foto);
   }
 }
 
@@ -189,11 +200,13 @@ function buscarFotoCercana(x, y) {
 // ---------- Recorrido (NUEVO) ----------
 
 function agregarAlRecorrido(foto) {
+
   const ultimo = recorrido[recorrido.length - 1];
   if (foto.id === ultimo) return;   // la misma dos veces seguidas: nada
 
   recorrido.push(foto.id);
   guardarRecorrido();
+    actualizarLista();  
   console.log('Recorrido:', recorrido);
 }
 
@@ -211,11 +224,13 @@ function cargarRecorrido() {
 function reiniciarRecorrido() {
   recorrido = [];
   localStorage.removeItem('rizoma-recorrido');
+    actualizarLista();
 }
 
 // ---------- Ventana ----------
 
 function windowResized() {
+    if (vista === 'lista') return;
   const contenedor = document.querySelector('#rizoma');
   resizeCanvas(contenedor.clientWidth, contenedor.clientHeight);
 }
@@ -230,13 +245,25 @@ function keyPressed() {
 
 // ---------- Ficha ----------
 
+let momentoApertura = 0;   // cuándo empezó a abrirse la ficha (arriba, con las otras variables)
+
 function prepararFicha() {
   const elemento = document.querySelector('#ficha');
   ficha = new bootstrap.Offcanvas(elemento);
 
-  // Empieza a abrirse: la esfera deja de escuchar
+  // Empieza a abrirse: la esfera deja de escuchar y anotamos la hora
   elemento.addEventListener('show.bs.offcanvas', function () {
     fichaAbierta = true;
+    momentoApertura = Date.now();
+  });
+
+  // Algo intenta cerrarla: si fu.e casi al instante, era un toque fantasma
+  elemento.addEventListener('hide.bs.offcanvas', function (evento) {
+    const pasado = Date.now() - momentoApertura;
+    console.log('Intento de cierre a los', pasado, 'ms');   // temporal, para diagnosticar
+    if (pasado < 500) {
+      evento.preventDefault();
+    }
   });
 
   // Terminó de cerrarse: la esfera vuelve a escuchar y se corta el video
@@ -295,4 +322,99 @@ function textoFecha(d) {
   if (d.anio === null) return 's/f';
   if (d.anioAprox) return 'c. ' + d.anio;
   return String(d.anio);
+}
+
+// ---------- Vista de lista ----------
+
+function imagenDe(d) {
+  if (d.miniatura) return d.miniatura;     // si algún día hay miniaturas, se usan
+  if (d.medio === 'video') return 'https://img.youtube.com/vi/' + d.src + '/hqdefault.jpg';
+  return d.src;
+}
+
+function construirLista() {
+  const contenedor = document.querySelector('#listaPiezas');
+
+  for (let i = 0; i < fotos.length; i++) {
+    const foto = fotos[i];
+    const d = foto.datos;
+
+    const columna = document.createElement('div');
+    columna.classList.add('col');
+
+    const boton = document.createElement('button');
+    boton.type = 'button';
+    boton.classList.add('pieza');
+
+    const img = document.createElement('img');
+    img.src = imagenDe(d);
+    img.alt = d.alt;
+    img.loading = 'lazy';                  // carga las imágenes a medida que aparecen
+
+    const titulo = document.createElement('span');
+    titulo.classList.add('pieza-titulo');
+    titulo.innerText = d.titulo;
+
+    const fecha = document.createElement('span');
+    fecha.classList.add('pieza-fecha');
+    fecha.innerText = textoFecha(d);
+
+    // Texto solo para lectores de pantalla ("visitado")
+    const estado = document.createElement('span');
+    estado.classList.add('estado', 'visually-hidden');
+
+    boton.append(img);
+    if (d.medio === 'video') {
+      const marca = document.createElement('span');
+      marca.classList.add('pieza-video');
+      marca.innerText = '▶ Video';
+      boton.append(marca);
+    }
+    boton.append(titulo, fecha, estado);
+
+    boton.addEventListener('click', function () {
+      abrirPieza(foto);
+    });
+
+    columna.append(boton);
+    contenedor.append(columna);
+    tarjetas[foto.id] = boton;
+  }
+}
+
+function actualizarLista() {
+  for (let i = 0; i < fotos.length; i++) {
+    const id = fotos[i].id;
+    const visitada = recorrido.includes(id);
+    // toggle con segundo parámetro: true agrega la clase, false la quita
+    tarjetas[id].classList.toggle('visitada', visitada);
+    tarjetas[id].querySelector('.estado').innerText = visitada ? ' (visitado)' : '';
+  }
+}
+
+function abrirPieza(foto) {
+  agregarAlRecorrido(foto);
+  mostrarFicha(foto);
+}
+
+function cambiarVista() {
+  const esfera = document.querySelector('#rizoma');
+  const lista = document.querySelector('#lista');
+  const boton = document.querySelector('#cambiarVista');
+
+  if (vista === 'esfera') {
+    vista = 'lista';
+    noLoop();                              // la esfera deja de dibujar
+    esfera.hidden = true;
+    lista.hidden = false;
+    boton.innerText = 'Ver como esfera';
+  } else {
+    vista = 'esfera';
+    lista.hidden = true;
+    esfera.hidden = false;
+    resizeCanvas(esfera.clientWidth, esfera.clientHeight);  // estaba oculto, medía 0
+    loop();
+    boton.innerText = 'Ver como lista';
+  }
+  localStorage.setItem('rizoma-vista', vista);
 }

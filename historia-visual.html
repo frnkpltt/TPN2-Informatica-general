@@ -99,7 +99,13 @@
             data-bs-toggle="collapse" data-bs-target="#comoFunciona"
             aria-expanded="false" aria-controls="comoFunciona">
       ¿Cómo funciona?
+
     </button>
+    <button id="cambiarVista" type="button" class="btn">Ver como lista</button>
+    <section id="lista" hidden>
+  <p>Las mismas piezas de la esfera, en lista. Tocá una para abrirla.</p>
+  <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3" id="listaPiezas"></div>
+
 
     <div class="collapse" id="comoFunciona">
       <p><strong>Qué es.</strong> Esta esfera es un archivo de fotos y videos de la historia de los Redondos y del Indio. Cada punto rojo es un recuerdo; los puntos blancos, tenues, son la multitud.</p>
@@ -111,6 +117,7 @@
   </section>
 
   <section id="rizoma"></section>
+  
   <button id="reiniciar" type="button" class="btn mt-3">Reiniciar recorrido</button>
 </main>
 

@@ -197,6 +197,44 @@ a {
 .intro-archivo p { font-size: 1rem; }
 #comoFunciona { text-align: left; margin-top: 1rem; }
 
+/* Archivo visual: vista de lista */
+.pieza {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  text-align: left;
+  color: white;                          /* el body global es negro */
+  background-color: black;
+  border: 2px solid rgb(131, 9, 9);      /* sin visitar: bordó, como los puntos rojos */
+  overflow: hidden;
+}
+
+.pieza.visitada { border-color: white; }  /* visitada: blanco, como en la esfera */
+
+.pieza img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;                   /* todas cuadradas, como las tapas de álbumes */
+  object-fit: cover;
+}
+
+.pieza-titulo,
+.pieza-fecha { display: block; padding: 0.25rem 0.5rem; }
+.pieza-titulo { font-weight: bold; font-size: 0.9rem; }
+.pieza-fecha { font-size: 0.8rem; padding-bottom: 0.5rem; }
+
+.pieza-video {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0 0.4rem;
+  font-size: 0.8rem;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.pieza:focus-visible { outline: 3px solid white; outline-offset: 2px; }
+
 /* Adaptación para pantallas grandes */
 @media (min-width: 768px) {
     #bloque {
